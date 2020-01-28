@@ -9,12 +9,12 @@ interface Piece {
 
 const arrayToObject = (arr, keyField) => Object.assign({}, ...arr.map(item => ({ [item[keyField]]: item })));
 
-function removeItemAtIndex(array: Piece[], index): Piece {
+function removeItemAtIndex(array: number[], index): Piece {
   return array.splice(index, 1)[0];
 }
 
 function makePieces(): Piece[] {
-  const dominoTxt = fs.readFileSync('./DominoSteine.txt').toString();
+  const dominoTxt = fs.readFileSync('./DominoSteineSample.txt').toString();
   const dominoRows = dominoTxt.trim().split('\n');
   const pieces = dominoRows.map((row, index) => {
     const [regex, string] = row.split(' ');
@@ -27,46 +27,38 @@ function makePieces(): Piece[] {
 function findMatches(pieces: Piece[]): Piece[] {
   pieces.forEach((p, i) => {
     const matches = pieces.filter(p2 => p.regex.test(p2.string) && String(i) !== p2.index);
-    // const matches = matchPieces.map(p => p.index).filter(j => j !== i);
-    // console.log(p.regex, matches.length, matches);
     p.matches = matches.map(p => p.index);
   });
 
   return pieces;
 }
 
-/*
-function putTogether(chain: Piece[], remaining: Piece[]) {
+function putTogether(chain: string[], remaining: string[]) {
   console.log(chain, remaining);
 
   if (remaining.length === 0) {
     console.log('LÖSUNG GEFUNDEN:', chain);
   } else {
-    let candidates;
-    if (chain.length === 0) {
-      candidates = [...remaining];
-    } else {
-      const lastIndex = chain[chain.length - 1];
-      candidates = remaining.filter(p => last.matches.includes(p));
-    }
+    const lastIndex = chain[chain.length - 1];
+    let candidates = remaining.filter(p => pieceMap[lastIndex].matches.includes(p));
+    console.log('candidates', candidates);
 
     // Jeden Kandidaten durchprobieren
     candidates.forEach((c, i) => {
-      let remaining = JSON.parse(JSON.stringify(candidates));
-      const candidate = removeItemAtIndex(remaining, i);
-      putTogether([...chain, candidate], remaining);
+      let newRemaining = JSON.parse(JSON.stringify(candidates));
+      const candidate = removeItemAtIndex(newRemaining, i);
+      putTogether([...chain, candidate], newRemaining);
     });
   }
 }
-*/
 
 let pieces = makePieces();
-// let pieceMap = Object.assign(pieces.map(p => ({ p.index => p })));
 pieces = findMatches(pieces);
-// console.log('pieces', pieces);
-
 let pieceMap = arrayToObject(pieces, 'index');
-console.log('pieceMap', pieceMap);
+// console.log('pieceMap', pieceMap);
 
-// console.log('pieces', pieces);
-// putTogether([], pieces);
+const first = pieces.shift();
+putTogether(
+  [first.index],
+  pieces.map(p => p.index)
+);

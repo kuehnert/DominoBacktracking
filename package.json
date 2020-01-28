@@ -1,5 +1,5 @@
 {
-  "name": "DominoBacktracking",
+  "name": "domino-backtracking",
   "version": "1.0.0",
   "description": "",
   "main": "Domino.js",
@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/node": "^13.1.8",
-    "typescript": "^3.7.5"
+    "@types/node": "13.5.0",
+    "typescript": "3.7.5"
   }
 }

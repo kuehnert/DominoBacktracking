@@ -1,0 +1,4 @@
+(ba)* acc
+c*bb* ba
+b(ab)* ba
+b|ca ab

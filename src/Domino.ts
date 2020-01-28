@@ -20,7 +20,7 @@ function removePieceAtIndex(array: any[], index: number): any {
   }
 }
 
-function makePieces(): Piece[] {
+function loadPieces(): Piece[] {
   const dominoTxt = fs.readFileSync('./lib/DominoSteine.txt').toString();
   const dominoRows = dominoTxt.trim().split('\n');
   const pieces = dominoRows.map((row: string, index: number) => {
@@ -65,26 +65,60 @@ function putTogether(chain: string[], remaining: string[]) {
   }
 }
 
+function findSolutions() {
+  pieces.forEach((c, i) => {
+    let newRemaining = JSON.parse(JSON.stringify(pieces));
+    const candidate = removePieceAtIndex(newRemaining, i);
+    console.log('\n####### Neuer 1. Stein:', candidate.index);
+
+    putTogether(
+      [candidate.index],
+      newRemaining.map((p: Piece) => p.index)
+    );
+  });
+
+  fs.writeFileSync('./Solutions.txt', solutions.join('\n'));
+  console.log('Finiss! Found ' + solutions.length + ' solutions.');
+}
+
+function findCircular() {
+  console.log('Suche Lösung');
+
+  let count = 0;
+  const solutions = fs
+    .readFileSync('./lib/Solutions.txt')
+    .toString()
+    .trim()
+    .split('\n');
+
+  solutions.forEach((s: string) => {
+    const a = s.split(', ');
+    const first = a[0];
+    const last = a[a.length - 1];
+
+    // console.log('solution:', s);
+    // console.log('first:', first);
+    // console.log('last:', last);
+    // console.log('matches:', pieceMap[last].matches);
+
+    if (pieceMap[last].matches.includes(first)) {
+      console.log('\nSuper-solution: ', s);
+    }
+
+    count += 1;
+    if (count % 100 === 0) {
+      process.stdout.write('.');
+    }
+  });
+}
+
+// Hauptprogramm
 console.log('Starting...');
 let solutionCount = 0;
 let solutions: string[] = [];
-let pieces = makePieces();
+let pieces = loadPieces();
 pieces = findMatches(pieces);
 let pieceMap = arrayToObject(pieces, 'index');
 console.log('pieceMap', pieceMap);
-// process.exit(0);
 
-// Hauptprogramm
-pieces.forEach((c, i) => {
-  let newRemaining = JSON.parse(JSON.stringify(pieces));
-  const candidate = removePieceAtIndex(newRemaining, i);
-  console.log('\n####### Neuer 1. Stein:', candidate.index);
-
-  putTogether(
-    [candidate.index],
-    newRemaining.map((p: Piece) => p.index)
-  );
-});
-
-fs.writeFileSync('./Solutions.txt', solutions.join('\n'));
-console.log('Finiss! Found ' + solutions.length + ' solutions.');
+findCircular();

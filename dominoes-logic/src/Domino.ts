@@ -112,6 +112,20 @@ function findCircular() {
   });
 }
 
+function savePieceMap() {
+  const dominoTxt = fs.readFileSync('./lib/DominoSteine.txt').toString();
+  const dominoRows = dominoTxt.trim().split('\n');
+  let pieces = dominoRows.map((row: string, index: number) => {
+    const [regex, string] = row.split(' ');
+    return { regex, string, index: String(index) };
+  });
+  pieces = findMatches(pieces);
+  let pieceMap = arrayToObject(pieces, 'index');
+
+  console.log('pieceMap', pieceMap);
+  fs.writeFileSync('./DominoSteine.json', JSON.stringify(pieceMap));
+}
+
 // Hauptprogramm
 console.log('Starting...');
 let solutionCount = 0;
@@ -119,6 +133,11 @@ let solutions: string[] = [];
 let pieces = loadPieces();
 pieces = findMatches(pieces);
 let pieceMap = arrayToObject(pieces, 'index');
-console.log('pieceMap', pieceMap);
 
-findCircular();
+savePieceMap();
+
+// Object.defineProperty(RegExp.prototype, "toJSON", {
+//   value: RegExp.prototype.toString
+// });
+
+// findCircular();

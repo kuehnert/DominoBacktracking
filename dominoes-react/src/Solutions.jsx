@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
 import './Solutions.css';
 
-const piecesUrl = 'http://localhost:3001/DominoSteine.json';
-const solutionsUrl = 'http://localhost:3001/Solutions.txt';
+const piecesUrl = 'http://localhost:3000/DominoSteine.json';
+const solutionsUrl = 'http://localhost:3000/Solutions.txt';
 
 function Solutions() {
   const [solutions, setSolutions] = useState(null);
@@ -20,6 +20,8 @@ function Solutions() {
     async function getSolutions() {
       const response = await Axios.get(solutionsUrl);
       const newSolutions = response.data
+        .toString()
+        .trim()
         .split('\n')
         .map(l => l.split(', '));
       setSolutions(newSolutions);
@@ -32,6 +34,10 @@ function Solutions() {
   const Piece = ({ index }) => {
     const piece = pieces[index];
 
+    if (piece == null) {
+      return <div>Fehler {index}</div>;
+    }
+
     return (
       <div className="Piece">
         <div className="PieceString">{piece.string}</div>
@@ -40,22 +46,33 @@ function Solutions() {
     );
   };
 
-  if (solutions == null) {
+  if (solutions == null || pieces == null) {
     return <div>Loading...</div>;
   }
+
+  const renderSolution = solution => {
+    if (solution == null) {
+      return <div>Fehler</div>;
+    }
+
+    return solution.map(index => <Piece key={index} index={String(index)} />);
+  };
 
   return (
     <div>
       <div className="slidecontainer">
-        <input type="range" min="0" max={solutions.length - 1} className="slider" value={solutionIndex} onChange={(e) => setSolutionIndex(e.target.value)} />
-        {solutionIndex}
+        <input
+          type="range"
+          min="0"
+          max={solutions.length - 1}
+          className="slider"
+          value={solutionIndex}
+          onChange={e => setSolutionIndex(e.target.value)}
+        />
       </div>
+      <div>Lösung Nr. {solutionIndex}</div>
 
-      <div className="Solutions">
-        {solutions[solutionIndex].map(index => (
-          <Piece key={index} index={String(index)} />
-        ))}
-      </div>
+      <div className="Solutions">{renderSolution(solutions[solutionIndex])}</div>
     </div>
   );
 }

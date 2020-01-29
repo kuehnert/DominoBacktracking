@@ -1,1 +1,90 @@
-{"0":{"regex":"(ba)*","string":"acc","index":"0","matches":["1","2","5","20"]},"1":{"regex":"c*bb*","string":"ba","index":"1","matches":["6","8","10","21","22"]},"2":{"regex":"b(ab)*","string":"ba","index":"2","matches":["8","9","10"]},"3":{"regex":"b|ca","string":"ab","index":"3","matches":["8","10","13"]},"4":{"regex":"(b|a)*","string":"acb","index":"4","matches":["1","2","3","5","8","9","10","16","20","22"]},"5":{"regex":"a(c|b)","string":"baba","index":"5","matches":["3"]},"6":{"regex":"b(a|b)*","string":"cb","index":"6","matches":["1","2","5","8","9","10","20","22"]},"7":{"regex":"bc|a*","string":"bc","index":"7","matches":["12","16"]},"8":{"regex":"a(b|c)*","string":"b","index":"8","matches":["0","3","4","11","16","17","19"]},"9":{"regex":"ac*b|c*b","string":"bab","index":"9","matches":["3","4","6","8","10","19","21"]},"10":{"regex":"b(c|a)*","string":"b","index":"10","matches":["1","2","7","8","12","14","20"]},"11":{"regex":"b*ca*","string":"abbc","index":"11","matches":["7","12","13","14"]},"12":{"regex":"ab*c","string":"bc","index":"12","matches":["11","17"]},"13":{"regex":"b(a|c)b","string":"ca","index":"13","matches":["9","15","23"]},"14":{"regex":"b(ab)*","string":"bca","index":"14","matches":["8","9","10"]},"15":{"regex":"c(a|b)*","string":"bcb","index":"15","matches":["6","13"]},"16":{"regex":"(a|b|c)*","string":"a","index":"16","matches":["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","17","18","19","20","21","22","23"]},"17":{"regex":"b(a|c)b","string":"abc","index":"17","matches":["9","15","23"]},"18":{"regex":"b(ab)*","string":"aabc","index":"18","matches":["8","9","10"]},"19":{"regex":"b(a|c)b","string":"acb","index":"19","matches":["9","15","23"]},"20":{"regex":"a|b*c*","string":"ba","index":"20","matches":["7","8","10","12","16","22"]},"21":{"regex":"ab*c","string":"ccb","index":"21","matches":["11","17"]},"22":{"regex":"(a|b)c*","string":"bb","index":"22","matches":["0","7","8","10","12","16"]},"23":{"regex":"(aa|a)b*c","string":"bcb","index":"23","matches":["11","17","18"]}}
+{
+  "0": { "regex": "(ba)*", "string": "acc", "index": "0", "matches": ["1", "2", "5", "20"] },
+  "1": { "regex": "c*bb*", "string": "ba", "index": "1", "matches": ["6", "8", "10", "21", "22"] },
+  "2": { "regex": "b(ab)*", "string": "ba", "index": "2", "matches": ["8", "9", "10"] },
+  "3": { "regex": "b|ca", "string": "ab", "index": "3", "matches": ["8", "10", "13"] },
+  "4": {
+    "regex": "(b|a)*",
+    "string": "acb",
+    "index": "4",
+    "matches": ["1", "2", "3", "5", "8", "9", "10", "16", "20", "22"]
+  },
+  "5": { "regex": "a(c|b)", "string": "baba", "index": "5", "matches": ["3"] },
+  "6": {
+    "regex": "b(a|b)*",
+    "string": "cb",
+    "index": "6",
+    "matches": ["1", "2", "5", "8", "9", "10", "20", "22"]
+  },
+  "7": { "regex": "bc|a*", "string": "bc", "index": "7", "matches": ["12", "16"] },
+  "8": {
+    "regex": "a(b|c)*",
+    "string": "b",
+    "index": "8",
+    "matches": ["0", "3", "4", "11", "16", "17", "19"]
+  },
+  "9": {
+    "regex": "ac*b|c*b",
+    "string": "bab",
+    "index": "9",
+    "matches": ["3", "4", "6", "8", "10", "19", "21"]
+  },
+  "10": {
+    "regex": "b(c|a)*",
+    "string": "b",
+    "index": "10",
+    "matches": ["1", "2", "7", "8", "12", "14", "20"]
+  },
+  "11": { "regex": "b*ca*", "string": "abbc", "index": "11", "matches": ["7", "12", "13", "14"] },
+  "12": { "regex": "ab*c", "string": "bc", "index": "12", "matches": ["11", "17"] },
+  "13": { "regex": "b(a|c)b", "string": "ca", "index": "13", "matches": ["9", "15", "23"] },
+  "14": { "regex": "b(ab)*", "string": "bca", "index": "14", "matches": ["8", "9", "10"] },
+  "15": { "regex": "c(a|b)*", "string": "bcb", "index": "15", "matches": ["6", "13"] },
+  "16": {
+    "regex": "(a|b|c)*",
+    "string": "a",
+    "index": "16",
+    "matches": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "17",
+      "18",
+      "19",
+      "20",
+      "21",
+      "22",
+      "23"
+    ]
+  },
+  "17": { "regex": "b(a|c)b", "string": "abc", "index": "17", "matches": ["9", "15", "23"] },
+  "18": { "regex": "b(ab)*", "string": "aabc", "index": "18", "matches": ["8", "9", "10"] },
+  "19": { "regex": "b(a|c)b", "string": "acb", "index": "19", "matches": ["9", "15", "23"] },
+  "20": {
+    "regex": "a|b*c*",
+    "string": "ba",
+    "index": "20",
+    "matches": ["7", "8", "10", "12", "16", "22"]
+  },
+  "21": { "regex": "ab*c", "string": "ccb", "index": "21", "matches": ["11", "17"] },
+  "22": {
+    "regex": "(a|b)c*",
+    "string": "bb",
+    "index": "22",
+    "matches": ["0", "7", "8", "10", "12", "16"]
+  },
+  "23": { "regex": "(aa|a)b*c", "string": "bcb", "index": "23", "matches": ["11", "17", "18"] }
+}

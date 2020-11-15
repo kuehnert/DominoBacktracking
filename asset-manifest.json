@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/dominoes-react/static/css/main.808704c3.chunk.css",
-    "main.js": "/dominoes-react/static/js/main.b534f276.chunk.js",
-    "main.js.map": "/dominoes-react/static/js/main.b534f276.chunk.js.map",
-    "runtime-main.js": "/dominoes-react/static/js/runtime-main.779f2a4a.js",
-    "runtime-main.js.map": "/dominoes-react/static/js/runtime-main.779f2a4a.js.map",
-    "static/js/2.cd6a968a.chunk.js": "/dominoes-react/static/js/2.cd6a968a.chunk.js",
-    "static/js/2.cd6a968a.chunk.js.map": "/dominoes-react/static/js/2.cd6a968a.chunk.js.map",
-    "index.html": "/dominoes-react/index.html",
-    "precache-manifest.e7bc41a3441dee7495062636e479b326.js": "/dominoes-react/precache-manifest.e7bc41a3441dee7495062636e479b326.js",
-    "service-worker.js": "/dominoes-react/service-worker.js",
-    "static/css/main.808704c3.chunk.css.map": "/dominoes-react/static/css/main.808704c3.chunk.css.map",
-    "static/js/2.cd6a968a.chunk.js.LICENSE": "/dominoes-react/static/js/2.cd6a968a.chunk.js.LICENSE"
+    "main.css": "/DominoBacktracking/static/css/main.808704c3.chunk.css",
+    "main.js": "/DominoBacktracking/static/js/main.1fca4315.chunk.js",
+    "main.js.map": "/DominoBacktracking/static/js/main.1fca4315.chunk.js.map",
+    "runtime-main.js": "/DominoBacktracking/static/js/runtime-main.930906f0.js",
+    "runtime-main.js.map": "/DominoBacktracking/static/js/runtime-main.930906f0.js.map",
+    "static/js/2.cd6a968a.chunk.js": "/DominoBacktracking/static/js/2.cd6a968a.chunk.js",
+    "static/js/2.cd6a968a.chunk.js.map": "/DominoBacktracking/static/js/2.cd6a968a.chunk.js.map",
+    "index.html": "/DominoBacktracking/index.html",
+    "precache-manifest.3695024ba5080ae9ef15b4d4ad356aff.js": "/DominoBacktracking/precache-manifest.3695024ba5080ae9ef15b4d4ad356aff.js",
+    "service-worker.js": "/DominoBacktracking/service-worker.js",
+    "static/css/main.808704c3.chunk.css.map": "/DominoBacktracking/static/css/main.808704c3.chunk.css.map",
+    "static/js/2.cd6a968a.chunk.js.LICENSE": "/DominoBacktracking/static/js/2.cd6a968a.chunk.js.LICENSE"
   },
   "entrypoints": [
-    "static/js/runtime-main.779f2a4a.js",
+    "static/js/runtime-main.930906f0.js",
     "static/js/2.cd6a968a.chunk.js",
     "static/css/main.808704c3.chunk.css",
-    "static/js/main.b534f276.chunk.js"
+    "static/js/main.1fca4315.chunk.js"
   ]
 }

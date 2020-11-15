@@ -2,9 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
 import './Solutions.css';
 
-const piecesUrl = 'http://localhost:3000/DominoSteine.json';
-const solutionsUrl = 'http://localhost:3000/Solutions.txt';
-
 function Solutions() {
   const [solutions, setSolutions] = useState(null);
   const [pieces, setPieces] = useState(null);
@@ -12,13 +9,19 @@ function Solutions() {
 
   useEffect(() => {
     async function getPieces() {
-      const responsePieces = await Axios.get(piecesUrl);
+      const responsePieces = await Axios({
+        url: 'DominoSteine.json',
+        baseURL: process.env.REACT_APP_BASE_URL,
+      });
       const pieces = responsePieces.data;
       setPieces(pieces);
     }
 
     async function getSolutions() {
-      const response = await Axios.get(solutionsUrl);
+      const response = await Axios({
+        url: 'Solutions.txt',
+        baseURL: process.env.REACT_APP_BASE_URL,
+      });
       const newSolutions = response.data
         .toString()
         .trim()
@@ -39,9 +42,9 @@ function Solutions() {
     }
 
     return (
-      <div className="Piece">
-        <div className="PieceString">{piece.string}</div>
-        <div className="PieceRegex">{piece.regex}</div>
+      <div className='Piece'>
+        <div className='PieceString'>{piece.string}</div>
+        <div className='PieceRegex'>{piece.regex}</div>
       </div>
     );
   };
@@ -60,19 +63,19 @@ function Solutions() {
 
   return (
     <div>
-      <div className="slidecontainer">
+      <div className='slidecontainer'>
         <input
-          type="range"
-          min="0"
+          type='range'
+          min='0'
           max={solutions.length - 1}
-          className="slider"
+          className='slider'
           value={solutionIndex}
           onChange={e => setSolutionIndex(e.target.value)}
         />
       </div>
       <div>Lösung Nr. {solutionIndex}</div>
 
-      <div className="Solutions">{renderSolution(solutions[solutionIndex])}</div>
+      <div className='Solutions'>{renderSolution(solutions[solutionIndex])}</div>
     </div>
   );
 }

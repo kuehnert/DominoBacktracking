@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/dominoes-react/static/css/main.808704c3.chunk.css",
+    "main.js": "/dominoes-react/static/js/main.b534f276.chunk.js",
+    "main.js.map": "/dominoes-react/static/js/main.b534f276.chunk.js.map",
+    "runtime-main.js": "/dominoes-react/static/js/runtime-main.779f2a4a.js",
+    "runtime-main.js.map": "/dominoes-react/static/js/runtime-main.779f2a4a.js.map",
+    "static/js/2.cd6a968a.chunk.js": "/dominoes-react/static/js/2.cd6a968a.chunk.js",
+    "static/js/2.cd6a968a.chunk.js.map": "/dominoes-react/static/js/2.cd6a968a.chunk.js.map",
+    "index.html": "/dominoes-react/index.html",
+    "precache-manifest.e7bc41a3441dee7495062636e479b326.js": "/dominoes-react/precache-manifest.e7bc41a3441dee7495062636e479b326.js",
+    "service-worker.js": "/dominoes-react/service-worker.js",
+    "static/css/main.808704c3.chunk.css.map": "/dominoes-react/static/css/main.808704c3.chunk.css.map",
+    "static/js/2.cd6a968a.chunk.js.LICENSE": "/dominoes-react/static/js/2.cd6a968a.chunk.js.LICENSE"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.779f2a4a.js",
+    "static/js/2.cd6a968a.chunk.js",
+    "static/css/main.808704c3.chunk.css",
+    "static/js/main.b534f276.chunk.js"
+  ]
+}

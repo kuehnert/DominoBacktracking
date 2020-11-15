@@ -12,7 +12,7 @@ b(c|a)* b
 b*ca* abbc
 ab*c bc
 b(a|c)b ca
-b(ab)* bca
+a(bc)* bca
 c(a|b)* bcb
 (a|b|c)* a
 b(a|c)b abc

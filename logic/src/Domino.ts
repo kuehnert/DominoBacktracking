@@ -23,6 +23,8 @@ function removePieceAtIndex(array: any[], index: number): any {
 function loadPieces(): Piece[] {
   const dominoTxt = fs.readFileSync('./lib/DominoSteine.txt').toString();
   const dominoRows = dominoTxt.trim().split('\n');
+  // console.log('dominoRows:', dominoRows);
+
   const pieces = dominoRows.map((row: string, index: number) => {
     const [regex, string] = row.split(' ');
     return { regex: new RegExp('^(' + regex + ')$'), string, index: String(index) };
@@ -77,19 +79,15 @@ function findSolutions() {
     );
   });
 
-  fs.writeFileSync('./Solutions.txt', solutions.join('\n'));
+  fs.writeFileSync('./lib/Solutions.txt', solutions.join('\n'));
   console.log('Finiss! Found ' + solutions.length + ' solutions.');
 }
 
 function findCircular() {
-  console.log('Suche Lösung');
+  console.log('Durchsuche Lösungen nach Ring...');
 
   let count = 0;
-  const solutions = fs
-    .readFileSync('./lib/Solutions.txt')
-    .toString()
-    .trim()
-    .split('\n');
+  const solutions = fs.readFileSync('./lib/Solutions.txt').toString().trim().split('\n');
 
   solutions.forEach((s: string) => {
     const a = s.split(', ');
@@ -128,16 +126,15 @@ function savePieceMap() {
 
 // Hauptprogramm
 console.log('Starting...');
+// savePieceMap();
+
 let solutionCount = 0;
 let solutions: string[] = [];
 let pieces = loadPieces();
+
 pieces = findMatches(pieces);
 let pieceMap = arrayToObject(pieces, 'index');
 
-savePieceMap();
+findSolutions();
 
-// Object.defineProperty(RegExp.prototype, "toJSON", {
-//   value: RegExp.prototype.toString
-// });
-
-// findCircular();
+findCircular();

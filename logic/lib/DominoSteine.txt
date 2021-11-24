@@ -1,4 +1,4 @@
-(ba)* acc
+(ba)* accb
 c*bb* ba
 b(ab)* ba
 b|ca ab
@@ -12,7 +12,7 @@ b(c|a)* b
 b*ca* abbc
 ab*c bc
 b(a|c)b ca
-a(bc)* bca
+a+cc+b* bca
 c(a|b)* bcb
 (a|b|c)* a
 b(a|c)b abc

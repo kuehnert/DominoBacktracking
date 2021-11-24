@@ -1,3 +1,7 @@
+div {
+  margin: 24px 0;
+}
+
 .Solutions {
   display: flex;
   flex-direction: row;

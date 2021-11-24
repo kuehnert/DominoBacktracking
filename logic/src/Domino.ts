@@ -27,15 +27,28 @@ function loadPieces(): Piece[] {
 
   const pieces = dominoRows.map((row: string, index: number) => {
     const [regex, string] = row.split(' ');
-    return { regex: new RegExp('^(' + regex + ')$'), string, index: String(index) };
+    return {
+      regex: new RegExp('^(' + regex + ')$'),
+      string,
+      index: String(index),
+    };
   });
 
   return pieces;
 }
 
+function savePieces(pieces: Piece[]) {
+  const newPieces = pieces.map(p => ({ ...p, regex: p.regex.toString().replace("/^(", "").replace(")$/", "") }));
+  let pieceMap = arrayToObject(newPieces, 'index');
+  console.log('pieceMap', pieceMap);
+  fs.writeFileSync('./lib/DominoSteine.json', JSON.stringify(pieceMap));
+}
+
 function findMatches(pieces: Piece[]): Piece[] {
   pieces.forEach((p, i) => {
-    const matches = pieces.filter(p2 => p.regex.test(p2.string) && String(i) !== p2.index);
+    const matches = pieces.filter(
+      p2 => p.regex.test(p2.string) && String(i) !== p2.index
+    );
     p.matches = matches.map(p => p.index);
   });
 
@@ -43,7 +56,9 @@ function findMatches(pieces: Piece[]): Piece[] {
 }
 
 function formatSolution(chain: string[]): string {
-  return chain.map(i => `[${pieceMap[i].string}|${pieceMap[i].regex}]`).join(' -- ');
+  return chain
+    .map(i => `[${pieceMap[i].string}|${pieceMap[i].regex}]`)
+    .join(' -- ');
 }
 
 function putTogether(chain: string[], remaining: string[]) {
@@ -57,7 +72,9 @@ function putTogether(chain: string[], remaining: string[]) {
     }
   } else {
     const lastIndex = chain[chain.length - 1];
-    let candidates = remaining.filter(p => pieceMap[lastIndex].matches.includes(p));
+    let candidates = remaining.filter(p =>
+      pieceMap[lastIndex].matches.includes(p)
+    );
 
     // Jeden Kandidaten durchprobieren
     candidates.forEach(c => {
@@ -87,7 +104,12 @@ function findCircular() {
   console.log('Durchsuche Lösungen nach Ring...');
 
   let count = 0;
-  const solutions = fs.readFileSync('./lib/Solutions.txt').toString().trim().split('\n');
+  const solutions = fs
+    .readFileSync('./lib/Solutions.txt')
+    .toString()
+    .trim()
+    .split('\n');
+  const superSolutions = Array<string>();
 
   solutions.forEach((s: string) => {
     const a = s.split(', ');
@@ -101,6 +123,7 @@ function findCircular() {
 
     if (pieceMap[last].matches.includes(first)) {
       console.log('\nSuper-solution: ', s);
+      superSolutions.push(s)
     }
 
     count += 1;
@@ -108,33 +131,20 @@ function findCircular() {
       process.stdout.write('.');
     }
   });
-}
 
-function savePieceMap() {
-  const dominoTxt = fs.readFileSync('./lib/DominoSteine.txt').toString();
-  const dominoRows = dominoTxt.trim().split('\n');
-  let pieces = dominoRows.map((row: string, index: number) => {
-    const [regex, string] = row.split(' ');
-    return { regex, string, index: String(index) };
-  });
-  pieces = findMatches(pieces);
-  let pieceMap = arrayToObject(pieces, 'index');
-
-  console.log('pieceMap', pieceMap);
-  fs.writeFileSync('./DominoSteine.json', JSON.stringify(pieceMap));
+  console.log(superSolutions.length + " Circular Solutions");
+  fs.writeFileSync('./lib/CircularSolutions.txt', superSolutions.join('\n'));
 }
 
 // Hauptprogramm
 console.log('Starting...');
-// savePieceMap();
 
 let solutionCount = 0;
 let solutions: string[] = [];
 let pieces = loadPieces();
-
 pieces = findMatches(pieces);
+// savePieces(pieces);
+
 let pieceMap = arrayToObject(pieces, 'index');
-
-findSolutions();
-
+// findSolutions();
 findCircular();
